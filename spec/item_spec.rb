@@ -1,38 +1,43 @@
 require_relative "../lib/item.rb"
 require_relative "../lib/constants.rb"
+require_relative "../lib/player.rb"
 
 describe Item do
-  let (:item) { Item.new }
+  let (:item) {Item.new "Health potion", 'delicious juice', {:current_hp => 15}}
+  let (:sword) {
+  Item.new "The sword of epicness",
+    'the best sword in the world!',
+    {:damage => 20},
+    Items::WEAPON}
+  let(:player) { Player.new "John" }
 
   it "has a name" do
     item.name.should be_kind_of String
   end
 
   it "has a description" do
-    item.desrciption.should be_kind_of String
+    item.description.should be_kind_of String
+  end
+
+  it "has a set of attributes" do
+    item.stats.should be_kind_of Hash
   end
 
   it "can be equipped" do
     item.should respond_to :equip
-
-    context "and can only be equipped once" do
-      before { sword = Item.new ; sword.equipped = false }
-      sword.equip.should == Items::EQUIP
-      item.should be_equipped
-      item2.equip.should == Items::ALREADY_EQUIPPED
-    end
   end
 
-  it "has a set of attributes" do
-    items.stats.should be_kind_of Hash
+  it "can only be equipped once" do
+    player.pick_up(sword)
+    player.equip(sword).should == Items::EQUIP
+    sword.should be_equipped
+    sword.equip.should == Items::ALREADY_EQUIPPED
   end
 
   it "is equal to another item" do
-    context "if name & description match" do
-      sword = Item.new
-      shield = Item.new
-      sword.should == shield
-    end
+    potion1 = Item.new
+    potion2 = Item.new
+    potion1.should == potion2
   end
 
 end
