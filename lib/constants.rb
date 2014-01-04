@@ -1,0 +1,11 @@
+module Items
+  EQUIP = true
+  UNEQUIP = false
+  ALREADY_EQUIPPED = 1
+  CONSUMABLE = 100
+  HELMET = 200
+  WEAPON = 201
+  SHILED = 202
+  ARMOUR = 203
+  BOOTS  = 204
+end
