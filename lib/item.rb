@@ -2,7 +2,7 @@ require "constants.rb"
 
 class Item
   attr_reader :name, :description, :stats, :type
-  def initialize(name='', desc='', stats={}, type=Items::CONSUMABLE)
+  def initialize(name='', desc='', stats={}, type=:consumable)
     @name = (name.is_a? String) ? name : "???"
     @description = (desc.is_a? String) ? desc : "IDK LOL"
     @stats = (stats.is_a? Hash) ? stats : {}
@@ -13,9 +13,9 @@ class Item
   def equip
     if @equipped == false
       @equipped = true
-      Items::EQUIP
+      :equip
     else
-      Items::ALREADY_EQUIPPED
+      :already_equipped
     end
   end
 

@@ -8,7 +8,7 @@ describe "Player" do
     Item.new "The sword of epicness",
       'the best sword in the world!',
       {:damage => 20},
-      Items::WEAPON}
+      :weapon}
 
   it "has a name" do
     player.should respond_to :name
@@ -27,7 +27,7 @@ describe "Player" do
   end
 
   it "can pick up items (if the inventory is not full)" do
-    player.pick_up(sword).should == Items::PICK_UP
+    player.pick_up(sword).should == :pick_up
   end
 
   it "has stats" do

@@ -2,13 +2,13 @@ require_relative "../lib/item.rb"
 require_relative "../lib/constants.rb"
 require_relative "../lib/player.rb"
 
-describe Item do
+describe "Item" do
   let (:item) {Item.new "Health potion", 'delicious juice', {:current_hp => 15}}
   let (:sword) {
   Item.new "The sword of epicness",
     'the best sword in the world!',
     {:damage => 20},
-    Items::WEAPON}
+    :weapon}
   let(:player) { Player.new "John" }
 
   it "has a name" do
@@ -29,9 +29,9 @@ describe Item do
 
   it "can only be equipped once" do
     player.pick_up(sword)
-    player.equip(sword).should == Items::EQUIP
+    player.equip(sword).should == :equip
     sword.should be_equipped
-    sword.equip.should == Items::ALREADY_EQUIPPED
+    sword.equip.should == :already_equipped
   end
 
   it "is equal to another item" do

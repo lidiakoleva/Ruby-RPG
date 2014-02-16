@@ -27,21 +27,21 @@ class Player
     if not max_load? and item.kind_of? Item
       @inventory << item
       @load += 1
-      Items::PICK_UP
+      :pick_up
     else
-      Items::UNABLE_TO_PICK_UP
+      :unable_to_pick_up
     end
   end
 
   def equip item
     if @inventory.include? item
       if item.equipped?
-        return Items::ALREADY_EQUIPPED
+        return :already_equipped
       else
         item.equip
       end
     else
-      Items::UNABLE_TO_EQUIP
+      :unable_to_equip
     end
   end
 
