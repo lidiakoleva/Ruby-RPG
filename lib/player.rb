@@ -1,7 +1,7 @@
 require "constants.rb"
 
 class Player
-  attr_reader :name, :xp, :level, :stats, :inventory
+  attr_reader :name, :xp, :level, :stats, :inventory, :direction, :x, :y
 
   def initialize(name)
     @name = name || "Unknown Warrior"
@@ -11,8 +11,13 @@ class Player
     @current_hp = stats[:hp]
     @max_hp = stats[:hp]
     @current_mana = stats[:mana]
+
     @inventory = []
     @load = 0
+
+    @direction = :down
+    @x = 5
+    @y = 5
   end
 
   def hp
@@ -75,7 +80,16 @@ class Player
   end
 
   def move(direction)
-    #TODO
+    dir_vector = Players::DIRECTIONS[direction]
+    if dir_vector.nil? or (@x + dir_vector[0] < 0) or (@y + dir_vector[1] < 0)
+      :unable_to_move
+    else
+      @x += dir_vector[0]
+      @y += dir_vector[1]
+      @direction = direction
+
+      :player_moved
+    end
   end
 
 end
