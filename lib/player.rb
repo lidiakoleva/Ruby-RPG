@@ -59,6 +59,7 @@ class Player
       else
         @inventory.reject! { |x| x.eql? item } # Non-stackable item
       end
+      @load -= 1
 
       :item_dropped
     else
@@ -68,7 +69,7 @@ class Player
   end
 
   def equip(item, position)
-    if @inventory.include? item
+    if @inventory.include? item and not item.is_a? Consumable
       if item.equipped?
         :already_equipped
       else

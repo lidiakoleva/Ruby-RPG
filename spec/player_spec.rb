@@ -42,7 +42,8 @@ describe "Player" do
   end
 
   it "can move around" do
-    player.move(:up).should be == :moved
+    player.move(:up).should be == :player_moved
+    #player.move(5).should be == :unable_to_move
   end
 
 
