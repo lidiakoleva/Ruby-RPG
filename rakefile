@@ -17,5 +17,10 @@ task :run_skeptic do
   end
 end
 
+task :git_add do
+  repo = "Ruby-RPG"
+  sh "git add * ; git commit ; git push #{repo} master"
+end
+
 task :default => [:run_rspec, :run_skeptic] do
 end
