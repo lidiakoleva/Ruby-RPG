@@ -5,13 +5,12 @@ require_relative "../lib/constants.rb"
 describe "Player" do
   let (:player) { Player.new "Doctor Who" }
   let (:sword) {
-    Item.new "The sword of epicness",
+    Weapon.new "The sword of epicness",
       'the best sword in the world!',
-      {:damage => 20},
-      :weapon}
+      {:damage => 20}}
 
   it "has a name" do
-    player.should respond_to :name
+    player.name.should be_kind_of String
   end
 
   it "has expirience" do
@@ -27,11 +26,24 @@ describe "Player" do
   end
 
   it "can pick up items (if the inventory is not full)" do
-    player.pick_up(sword).should == :pick_up
+    unless player.inventory_full?
+      player.pick_up(sword).should be == :pick_up
+    end
   end
 
   it "has stats" do
     player.stats.should be_kind_of Hash
   end
+
+  it "can drop an item" do
+    me = Player.new "CodeMonkey"
+    me.pick_up sword
+    me.drop(sword).should be == :item_dropped
+  end
+
+  it "can move around" do
+    player.move(:up).should be == :moved
+  end
+
 
 end
