@@ -42,7 +42,7 @@ class Player
     end
   end
 
-  def drop(item, drop_count)
+  def drop(item, drop_count = 1)
     if @inventory.include? item
 
       if item.is_a? Consumable
@@ -65,13 +65,17 @@ class Player
   def equip(item, position)
     if @inventory.include? item
       if item.equipped?
-        return :already_equipped
+        :already_equipped
       else
-        item.equip
+        #TODO
       end
     else
       :unable_to_equip
     end
+  end
+
+  def move(direction)
+    #TODO
   end
 
 end
