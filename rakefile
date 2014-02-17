@@ -1,0 +1,21 @@
+
+desc "Run the skeptic and rspec tests"
+task :run_rspec do
+  sh 'rspec'
+end
+
+task :run_skeptic do
+  Dir["lib/*.rb"].each do |file|
+    result = `skeptic -l 80 -r -c -n -g -s #{file}`
+    lines = result.count("\n")
+    clear = `printf \x1b[#{lines}A\x1b[2K`
+    if result == "OK\n"
+      puts "[\x1b[32mOK\x1b[0m] - #{file[4..-1]}"
+    else
+      puts "\x1b[31m#{result[0..-2]}\x1b[0m(\x1b[3m#{file[4..-1]}\x1b[0m)"
+    end
+  end
+end
+
+task :default => [:run_rspec, :run_skeptic] do
+end
