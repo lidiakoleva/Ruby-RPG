@@ -1,4 +1,4 @@
-module Colors
+module Colours
   #Note: BMP saves the colours in BGR instead of RGB!
   GREEN = '00c864'.freeze
   GREY = '919191'.freeze
