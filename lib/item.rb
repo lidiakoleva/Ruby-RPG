@@ -41,15 +41,18 @@ class Consumable < Item
 end
 
 class Equippable < Item
-  attr_reader :equippable_on
 
   def initialize(name, description, stats, equippable_on)
     super(name, description, stats)
-    @equippable_on = equippable_on
+    @equippable_on = equippable_on.dup
   end
 
   def ==(other)
     self.eql? other
+  end
+
+  def equippable_on?(position)
+    @equippable_on.include? position
   end
 end
 
