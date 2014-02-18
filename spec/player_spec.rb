@@ -25,6 +25,19 @@ describe Player do
     it "has stats" do
       player.stats.should be_kind_of Hash
     end
+
+    it "can get his/her stats with equipped items" do
+      mage = Player.new("Mighty mage")
+
+      mage.pick_up(sword)
+      mage.equip(sword, :left_hand)
+
+      expected_stats = mage.basic_stats.merge(sword.stats) {|key, val1, val2| val1 + val2}
+      mage.stats.should be == expected_stats
+
+      mage.drop(sword)
+      mage.stats.should be == mage.basic_stats
+    end
   end
 
   context "can interact with items" do
