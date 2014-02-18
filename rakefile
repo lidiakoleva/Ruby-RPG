@@ -22,5 +22,9 @@ task :git_add do
   sh "git add * ; git commit ; git push #{repo} master"
 end
 
+task :diff do
+  sh 'git diff --color'
+end
+
 task :default => [:run_rspec, :run_skeptic] do
 end
