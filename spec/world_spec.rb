@@ -2,26 +2,23 @@ require_relative '../lib/world.rb'
 require_relative '../lib/tile.rb'
 
 describe World do
-  let (:world) {World.new(1)}
+  let(:path) {String.new("/home/latunov/Desktop/ruby_proj/data/levels/1.bmp")}
+  let (:world) {World.new(path, "Random Hero")}
 
   it "has a map" do
-    pending
     world.should respond_to :map
   end
 
   it "has a player" do
-    pending
     world.should respond_to :player
   end
 
-  it "has tiles" do
-    pending
-    world.tile(1, 1).should be_kind_of Tile
+  it "map has tiles" do
+    world.map[2][3].should be_kind_of Tile
   end
 
-  it "has NPCs" do
-    pending
-    world.npc?(1, 1).should be_kind_of Boolean
+  it "map has NPCs" do
+    world.map.any? {|x| x.any? {|tile| tile.should respond_to :mob}}
   end
 
 end
