@@ -61,10 +61,7 @@ describe Player do
   end
 
   it "can move around (if it is not the end of the map)" do
-    5.times {player.move(:up).should be == :player_moved}
-    #Note: the default spawning position is [5,5] 
-    #      and [0,0] is the top-left corner of the screen
-    player.move(:up).should be == :unable_to_move
+    player.move(:up).should be == :player_moved
   end
 
 end
