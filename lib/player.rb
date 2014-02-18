@@ -1,27 +1,34 @@
 require "constants.rb"
 
 class Player
-  attr_reader :name, :xp, :level, :stats, :inventory, :direction, :x, :y, :load
+  attr_reader :name, :xp, :level, :stats, :inventory,
+              :direction, :x, :y, :load, :basic_stats
 
-  def initialize(name)
+  def initialize(name, x = 5, y = 5)
+    #---init stats---
     @name = name || "Unknown Warrior"
     @xp = 0
     @level = 1
-    @stats = BASIC_STATS
-    @current_hp = stats[:hp]
-    @max_hp = stats[:hp]
-    @current_mana = stats[:mana]
+    @basic_stats = BASIC_STATS.dup
+    @max_hp = @basic_stats[:hp]
+    @max_mana = @basic_stats[:mana]
+
+    #---combat related stats---
+    @stats = BASIC_STATS.dup
+    @current_hp = @stats[:hp]
+    @current_mana = @stats[:mana]
 
     @inventory = []
+    @equipped_items = NO_ITEMS_EQUIPPED.dup
     @load = 0
-
+    #---world related stats---
     @direction = :down
-    @x = 5
-    @y = 5
+    @x = x
+    @y = y
   end
 
   def hp
-    "#{@current_hp / @max_hp}"
+    [@current_hp, @max_hp]
   end
 
   def inventory_full?
@@ -40,10 +47,9 @@ class Player
       else
         @inventory << item
         @load += 1
-
-        :pick_up
       end
 
+      :picked_up
     end
   end
 
@@ -57,6 +63,7 @@ class Player
 
         @inventory.reject! { |x| x.eql? item } if item_in_inventory.empty?
       else
+        @equipped_items.each { |key, value| unequip(key) if value == item}
         @inventory.reject! { |x| x.eql? item } # Non-stackable item
       end
       @load -= 1
@@ -68,12 +75,21 @@ class Player
     end
   end
 
+  def unequip(position)
+    @equipped_items[position] = nil
+    update_stats
+  end
+
   def equip(item, position)
-    if @inventory.include? item and not item.is_a? Consumable
-      if item.equipped?
+    if @inventory.include? item and item.equippable_on?(position)
+      if @equipped_items[position] == item
         :already_equipped
       else
-        #TODO
+        unequip(position)
+        @equipped_items[position] = item
+        update_stats
+
+        :item_equipped
       end
     else
       :unable_to_equip
@@ -83,21 +99,31 @@ class Player
   def move(direction)
     dir_vector = DIRECTIONS[direction]
 
-    if dir_vector.nil? or (@x + dir_vector[0] < 0) or (@y + dir_vector[1] < 0)
-      :unable_to_move
-    else
-      @x += dir_vector[0]
-      @y += dir_vector[1]
-      @direction = direction
+    @x += dir_vector[0]
+    @y += dir_vector[1]
+    @direction = direction
 
-      :player_moved
-    end
+    :player_moved
   end
 
   private
-  BASIC_STATS = {:hp => 80, :armor => 0, :damage => 12, :mana => 60}
-  MAX_LOAD = 25
-  DIRECTIONS = {:up => [0, 1], :down => [0, -1],
-                :left => [-1, 0], :right => [1, 0]}
+
+  def update_stats
+    @stats = @basic_stats.dup
+    @equipped_items.each do |key, item|
+      puts item
+      unless item.nil?
+        @stats.merge!(item.stats) {|key, val1, val2| val1 + val2}
+      end
+    end
+  end
+
+  MAX_LOAD = 20
+  DIRECTIONS = {:up => [0, -1], :down => [0, 1],
+                :left => [-1, 0], :right => [1, 0]}.freeze
+
+  NO_ITEMS_EQUIPPED = {:left_hand => nil, :right_hand => nil, :head => nil, 
+                       :torso => nil,     :legs => nil,       :feet => nil}
+  BASIC_STATS = {:hp => 80, :armour => 0, :damage => 12, :mana => 40}.freeze
 
 end
