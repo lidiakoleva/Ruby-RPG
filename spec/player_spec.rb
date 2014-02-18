@@ -15,7 +15,7 @@ describe Player do
       player.name.should be_kind_of String
     end
 
-    it "has expirience" do
+    it "has experience" do
       player.should respond_to :xp
     end
 
