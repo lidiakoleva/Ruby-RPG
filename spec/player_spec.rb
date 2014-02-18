@@ -34,17 +34,19 @@ describe Player do
     end
 
     it "picks up items (if the inventory is not full)" do
-      unless player.inventory_full?
-        player.pick_up(sword).should be == :pick_up
-      end
+      hero = Player.new("Some Name")
+      armour_arr = [Armour.new('Platemail', '', {:armour => 4})] * 25
+      #Note: The maximum inventory size of any hero is 25
+      armour_arr.each {|item| hero.pick_up(item)}
+      hero.pick_up(sword).should be == :inventory_full
     end
 
-    it "drops an item" do
+    it "drops an item (if he has it in his inventory)" do
       me = Player.new "CodeMonkey"
       me.pick_up(sword)
-      me.load.should be == 1
       me.drop(sword).should be == :item_dropped
       me.load.should be == 0
+      me.drop(sword).should be == :unable_to_drop
     end
   end
 
@@ -58,12 +60,11 @@ describe Player do
     it "gains experience"
   end
 
-  it "can move around" do
-    player.move(:up).should be == :player_moved
-    player.move(5).should be == :unable_to_move
+  it "can move around (if it is not the end of the map)" do
+    5.times {player.move(:up).should be == :player_moved}
+    #Note: the default spawning position is [5,5] 
+    #      and [0,0] is the top-left corner of the screen
+    player.move(:up).should be == :unable_to_move
   end
-
-
-
 
 end
