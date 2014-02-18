@@ -1,17 +1,23 @@
-require_relative 'npc.rb'
-
 class Tile
-
-  attr_reader :x, :y
-
-  def initialize(x, y, pass_through)
-    @x = x
-    @y = y
+  attr_reader :mob
+  def initialize(pass_through = true, mob = nil)
     @pass_through = pass_through
+    @mob = mob
   end
 
   def pass_through?
     @pass_through
   end
+end
 
+class Wall < Tile
+  def initialize
+    super(false, nil)
+  end
+end
+
+class Water < Tile
+  def initialize
+    super(false, nil)
+  end
 end
