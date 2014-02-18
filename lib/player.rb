@@ -82,6 +82,7 @@ class Player
 
   def move(direction)
     dir_vector = DIRECTIONS[direction]
+
     if dir_vector.nil? or (@x + dir_vector[0] < 0) or (@y + dir_vector[1] < 0)
       :unable_to_move
     else
