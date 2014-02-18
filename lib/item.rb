@@ -16,7 +16,7 @@ end
 
 
 class Consumable < Item
-  attr_reader :name, :description, :stats, :stack
+  attr_reader :stack
 
   def initialize(name, description, stats, stack)
     super(name, description, stats)
@@ -35,24 +35,50 @@ class Consumable < Item
     @stack < 1
   end
 
-  def equip(position)
-    #TODO -- not sure if needed
+  def use(player)
+    
   end
-
 end
 
-class Armor < Item
-  attr_reader :name, :description, :stats
-  def initialize(name, description, stats)
+class Equippable < Item
+  attr_reader :equippable_on
+
+  def initialize(name, description, stats, equippable_on)
     super(name, description, stats)
+    @equippable_on = equippable_on
+  end
+
+  def ==(other)
+    self.eql? other
   end
 end
 
-class Weapon < Item
-  attr_reader :name, :description, :stats
-
+class Weapon < Equippable
   def initialize(name, description, stats)
-    super(name, description, stats)
+    super(name, description, stats, [:right_hand, :left_hand])
   end
 end
 
+class Armour < Equippable
+  def initialize(name, description, stats)
+    super(name, description, stats, [:torso])
+  end
+end
+
+class Pants < Equippable
+  def initialize(name, description, stats)
+    super(name, description, stats,[:legs])
+  end
+end
+
+class Boots < Equippable
+  def initialize(name, description, stats)
+    super(name, description, stats,[:feet])
+  end
+end
+
+class Helmet < Equippable
+  def initialize(name, description, stats)
+    super(name, description, stats,[:head])
+  end
+end
