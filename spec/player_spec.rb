@@ -1,6 +1,5 @@
 require_relative "../lib/player.rb"
 require_relative "../lib/item.rb"
-require_relative "../lib/constants.rb"
 
 describe Player do
   let (:player) { Player.new "Doctor Who" }
@@ -56,7 +55,7 @@ describe Player do
 
     it "levels up"
 
-    it "gains expirience"
+    it "gains experience"
   end
 
   it "can move around" do
