@@ -31,8 +31,7 @@ describe Player do
 
       mage.pick_up(sword)
       mage.equip(sword, :left_hand)
-
-      expected_stats = mage.basic_stats.merge(sword.stats) {|key, val1, val2| val1 + val2}
+      expected_stats = mage.basic_stats.merge(sword.stats){|_, v1, v2| v1 + v2}
       mage.stats.should be == expected_stats
 
       mage.drop(sword)
