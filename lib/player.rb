@@ -4,7 +4,7 @@ class Player
   attr_reader :name, :xp, :level, :stats, :inventory,
               :direction, :x, :y, :load, :basic_stats
 
-  def initialize(name, x = 5, y = 5)
+  def initialize(name, x, y)
     #---init stats---
     @name = name || "Unknown Warrior"
     @xp = 0
@@ -17,6 +17,8 @@ class Player
     @stats = BASIC_STATS.dup
     @current_hp = @stats[:hp]
     @current_mana = @stats[:mana]
+    @stats_from_consumables = {:current_hp => @current_hp,
+                               :current_mana => @current_mana}
 
     @inventory = []
     @equipped_items = NO_ITEMS_EQUIPPED.dup
@@ -118,6 +120,16 @@ class Player
     end
   end
 
+  def consume(item)
+    if item.is_a? Consumable and @inventory.include? item
+      @stats_from_consumables.merge!(item.stats, &MERGE)
+      drop(item)
+      update_current_stats
+    else
+      :unable_to_consume
+    end
+  end
+
   def move(direction)
     dir_vector = DIRECTIONS[direction]
 
@@ -129,7 +141,9 @@ class Player
   end
 
   private
+  #---Private methods start here---
 
+  attr_writer :current_hp, :current_mana
   def calculate_level
     #TODO
   end
@@ -137,10 +151,15 @@ class Player
   def update_stats
     @stats = @basic_stats.dup
     @equipped_items.each do |key, item|
-      puts item
-      unless item.nil?
-        @stats.merge!(item.stats) {|key, val1, val2| val1 + val2}
+      unless item.nil? or item.stats.empty?
+        @stats.merge!(item.stats, &MERGE)
       end
+    end
+  end
+
+  def update_current_stats
+    @stats_from_consumables.each do |key, value|
+      send("#{key}=", value)
     end
   end
 
@@ -153,5 +172,7 @@ class Player
 
   BASIC_STATS = {:hp => 80, :armour => 0, :damage => 12,
                  :mana => 40, :crit => 0.00}.freeze
+
+  MERGE = Proc.new { |_, value_1, value_2| value_1 + value_2 }
 
 end

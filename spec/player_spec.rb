@@ -2,11 +2,10 @@ require_relative "../lib/player.rb"
 require_relative "../lib/item.rb"
 
 describe Player do
-  let (:player) { Player.new "Doctor Who" }
-  let (:sword) {
-    Weapon.new "The sword of epicness",
-      'the best sword in the world!',
-      {:damage => 20}}
+  let (:player) { Player.new "Doctor Who", 1, 1 }
+  let (:sword) { Weapon.new "The sword of epicness",
+                 'the best sword in the world!',
+                 {:damage => 20}}
 
   context "basic information" do
 
@@ -27,7 +26,7 @@ describe Player do
     end
 
     it "can get his/her stats with equipped items" do
-      mage = Player.new("Mighty mage")
+      mage = Player.new("Mighty mage", 1, 1)
 
       mage.pick_up(sword)
       mage.equip(sword, :left_hand)
@@ -46,7 +45,7 @@ describe Player do
     end
 
     it "picks up items (if the inventory is not full)" do
-      hero = Player.new("Some Name")
+      hero = Player.new("Some Name", 1, 1)
       armour_arr = [Armour.new('Platemail', '', {:armour => 4})] * 25
       #Note: The maximum inventory size of any hero is 25
       armour_arr.each {|item| hero.pick_up(item)}
@@ -54,11 +53,27 @@ describe Player do
     end
 
     it "drops an item (if he has it in his inventory)" do
-      me = Player.new "CodeMonkey"
+      me = Player.new("CodeMonkey", 1, 1)
       me.pick_up(sword)
       me.drop(sword).should be == :item_dropped
       me.load.should be == 0
       me.drop(sword).should be == :unable_to_drop
+    end
+
+    it "drinks a health potion" do
+      potion = Consumable.new("Health Potion", '', {:current_hp => +10})
+      pre_potion_hp = player.hp[0]
+      player.pick_up(potion)
+      player.consume(potion)
+      player.hp[0].should be == pre_potion_hp + potion.stats[:current_hp]
+    end
+
+    it "can drink an `empty` potion" do
+      potion = Consumable.new("Health Potion", '', {})
+      player.pick_up(potion)
+      player.consume(potion)
+      player.hp[0].should be == player.hp[1]
+      player.inventory.should_not include potion
     end
   end
 
