@@ -63,7 +63,6 @@ class World
         case @world_palette[bitmap[j, i]].name
 
         when "Tile", "Wall", "Water"
-          puts "Entered here!"
           @map[i] << @world_palette[bitmap[j, i]].new
 
         when "NPC"
