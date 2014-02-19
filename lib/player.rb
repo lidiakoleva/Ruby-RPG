@@ -1,4 +1,4 @@
-require "constants.rb"
+require_relative "constants.rb"
 
 class Player
   attr_reader :name, :xp, :level, :stats, :inventory,
