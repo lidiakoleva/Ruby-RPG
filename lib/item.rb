@@ -18,7 +18,7 @@ end
 class Consumable < Item
   attr_reader :stack
 
-  def initialize(name, description, stats, stack)
+  def initialize(name, description, stats, stack = 1)
     super(name, description, stats)
     @stack = stack
   end
@@ -33,10 +33,6 @@ class Consumable < Item
 
   def empty?
     @stack < 1
-  end
-
-  def use(player)
-    
   end
 end
 
