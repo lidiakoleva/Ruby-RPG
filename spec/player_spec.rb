@@ -62,16 +62,6 @@ describe Player do
     end
   end
 
-  context "can interact with mobs:" do
-    it "fights monsters"
-
-    it "dies"
-
-    it "levels up"
-
-    it "gains experience"
-  end
-
   it "can move around (if it is not the end of the map)" do
     player.move(:up).should be == :player_moved
   end

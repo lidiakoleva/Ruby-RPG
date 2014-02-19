@@ -17,15 +17,8 @@ describe NPC do
     end
   end
 
-  context "can fight:" do
-
-    it "can die" do
-      npc.should respond_to :kill
-    end
-
-    it "receives damage"
-
-    it "damages the player"
+  it "can die" do
+    npc.should respond_to :kill
   end
 
-  end
+end
