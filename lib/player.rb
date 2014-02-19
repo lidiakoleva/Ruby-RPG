@@ -27,8 +27,30 @@ class Player
     @y = y
   end
 
+  def dead?
+    @current_hp < 1
+  end
+
+  def damage
+    (@stats[:damage] + @basic_stats[:damage] * (@level - 1.00 / @level)).round
+  end
+
+  def recieve_damage(mob)
+    damage_reduction = (1.00 - 100 / (100.00 + @stats[:armour])) * 100
+    @current_hp = @current_hp - (mob.damage * damage_reduction).round
+  end
+
+  def end_combat
+    @current_hp = @stats[:hp]
+  end
+
   def hp
     [@current_hp, @max_hp]
+  end
+
+  def gain(xp)
+    @xp += xp.abs.round
+    calculate_level
   end
 
   def inventory_full?
@@ -108,6 +130,10 @@ class Player
 
   private
 
+  def calculate_level
+    #TODO
+  end
+
   def update_stats
     @stats = @basic_stats.dup
     @equipped_items.each do |key, item|
@@ -119,11 +145,13 @@ class Player
   end
 
   MAX_LOAD = 20
-  DIRECTIONS = {:up => [0, -1], :down => [0, 1],
+  DIRECTIONS = {:up   => [0, -1], :down  => [0, 1],
                 :left => [-1, 0], :right => [1, 0]}.freeze
 
   NO_ITEMS_EQUIPPED = {:left_hand => nil, :right_hand => nil, :head => nil, 
-                       :torso => nil,     :legs => nil,       :feet => nil}
-  BASIC_STATS = {:hp => 80, :armour => 0, :damage => 12, :mana => 40}.freeze
+                       :torso     => nil, :legs       => nil, :feet => nil}
+
+  BASIC_STATS = {:hp => 80, :armour => 0, :damage => 12,
+                 :mana => 40, :crit => 0.00}.freeze
 
 end
