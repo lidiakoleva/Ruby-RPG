@@ -5,24 +5,22 @@ require_relative 'player.rb'
 
 class World
 
-  module Map
-    WORLD = {Colours::GREEN => Tile,
+  @@world = {Colours::GREEN => Tile,
              Colours::GREY => Wall,
              Colours::BLUE => Water,
              Colours::BLACK => NPC,
              Colours::WHITE => Player}.freeze
 
-    NPC_STATS = {:name => ['Rat', 'Goo Blob', 'Skeleton', 'Merfolk', 'Elf'],
+  @@npc_stats = {:name => ['Rat', 'Goo Blob', 'Skeleton', 'Merfolk', 'Elf'],
                  :stats => [{}],
                  :xp => [240, 250, 260, 270]}.freeze
-  end
 
   attr_reader :map, :player
 
   def initialize(level,
                  player_name,
-                 world_palette = Map::WORLD,
-                 npc_palette = Map::NPC_STATS)
+                 world_palette = @@world,
+                 npc_palette = @@npc_stats)
     @map = []
     @player = nil
     @world_palette = world_palette.dup
@@ -57,8 +55,8 @@ class World
 
     @map = Array.new(bitmap.height) { [] }
 
-    (0...bitmap.height).each  do |i|
-      (0...bitmap.width).each do |j|
+    0.upto(bitmap.height.pred).each  do |i|
+      0.upto(bitmap.width.pred).each do |j|
 
         case @world_palette[bitmap[j, i]].name
 
