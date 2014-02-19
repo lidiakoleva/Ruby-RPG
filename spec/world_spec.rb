@@ -14,7 +14,7 @@ describe World do
   end
 
   it "map has tiles" do
-    world.map[2][3].should be_kind_of Tile
+    world.map.each {|x| x.any? {|tile| tile.should be_kind_of Tile}}
   end
 
   it "map has NPCs" do

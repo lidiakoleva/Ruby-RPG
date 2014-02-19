@@ -6,13 +6,25 @@ class World
 
   attr_reader :map, :player
 
-  def initialize(level, player_name)
+  def initialize(level,
+                 player_name,
+                 world_palette = Map::WORLD,
+                 npc_palette = Map::NPC_STATS)
     @map = []
     @player = nil
+    @world_palette = world_palette
+    @npc_palette = npc_palette
+
     create_map(level, player_name)
   end
 
   private
+
+  def npc_stats
+    [@npc_palette[:name].sample,
+     @npc_palette[:stats].sample,
+     @npc_palette[:xp].sample]
+   end
 
   def create_map(level, player_name)
     bitmap = BMPReader.new(level)
@@ -21,19 +33,18 @@ class World
 
     (0...bitmap.height).each  do |i|
       (0...bitmap.width).each do |j|
+        case @world_palette[bitmap[j, i]]
 
-        case bitmap[j, i]
-        when Colours::GREEN
+        when Tile, Wall, Water
+          @map[i] << @world_palette[bitmap[j, i]].new
+
+        when NPC
+          @map[i] << Tile.new(true, NPC.new(*npc_stats))
+
+        when Player
           @map[i] << Tile.new
-        when Colours::GREY
-          @map[i] << Wall.new
-        when Colours::BLACK
-          @map[i] << Tile.new(true, NPC.new("Some name", {}, 400))
-        when Colours::BLUE
-          @map[i] << Water.new
-        when Colours::WHITE
-          @map[i] << Tile.new
-          @player = Player.new(player_name, i, j)
+          @player = Player.new(player_name)
+
         end
       end
     end
