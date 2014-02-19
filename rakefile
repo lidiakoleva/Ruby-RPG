@@ -1,7 +1,7 @@
 
 desc "Run the skeptic and rspec tests"
-task :run_rspec do
-  sh 'rspec'
+task :rspec do
+  system 'rspec'
 end
 
 task :run_skeptic_on_lib do
@@ -32,15 +32,12 @@ task :run_skeptic_on_spec do
   end
 end
 
-task :git_add do
-  repo = "Ruby-RPG"
-  sh "git add * ; git commit ; git push #{repo} master"
-end
+task :skeptic => [:run_skeptic_on_lib, :run_skeptic_on_spec]
 
 task :diff do
   sh 'git diff --color'
 end
 
-task :default => [:run_rspec, :run_skeptic_on_lib, :run_skeptic_on_spec] do
+task :default => [:rspec, :skeptic] do
   puts ''
 end
