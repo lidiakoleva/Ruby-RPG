@@ -5,34 +5,39 @@ task :rspec do
 end
 
 task :run_skeptic_on_lib do
-  puts "\n\x1b[35mRunning skeptic on lib/*.rb files\x1b[0m"
+  puts "\n\e[35mRunning skeptic on lib/*.rb files\e[0m"
   Dir["lib/*.rb"].each do |file|
     result = `skeptic -l 80 -r -c -n -g -s #{file}`
     lines = result.count("\n")
-    clear = `printf \x1b[#{lines}A\x1b[2K`
+    clear = `printf \e[#{lines}A\e[2K`
     if result == "OK\n"
-      puts "[\x1b[32mOK\x1b[0m] - #{file[4..-1]}"
+      puts "[\e[32mOK\e[0m] - #{file[4..-1]}"
     else
-      puts "\x1b[31m#{result[0..-2]}\x1b[7m#{file[4..-1]}\x1b[0m"
+      puts "\e[31m#{result[0..-2]}\e[7m#{file[4..-1]}\e[0m"
     end
   end
 end
 
 task :run_skeptic_on_spec do
-  puts "\n\x1b[35mRunning skeptic on spec/*.rb files\x1b[0m"
+  puts "\n\e[35mRunning skeptic on spec/*.rb files\e[0m"
   Dir["spec/*_spec.rb"].each do |file|
     result = `skeptic -l 80 -r -c -n -g -s #{file}`
     lines = result.count("\n")
-    clear = `printf \x1b[#{lines}A\x1b[2K`
+    clear = `printf \e[#{lines}A\e[2K`
     if result == "OK\n"
-      puts "[\x1b[32mOK\x1b[0m] - #{file[5..-1]}"
+      puts "[\e[32mOK\e[0m] - #{file[5..-1]}"
     else
-      puts "\x1b[31m#{result[0..-2]}\x1b[7m#{file[5..-1]}\x1b[0m"
+      puts "\e[31m#{result[0..-2]}\e[7m#{file[5..-1]}\e[0m"
     end
   end
 end
 
 task :skeptic => [:run_skeptic_on_lib, :run_skeptic_on_spec]
+
+task :run_ui do
+  system 'ruby ui.rb'
+  system 'clear'
+end
 
 task :diff do
   sh 'git diff --color'
