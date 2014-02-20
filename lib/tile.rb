@@ -5,6 +5,10 @@ class Tile
     @mob = mob
   end
 
+  def has_mob?
+    @mob != nil
+  end
+
   def pass_through?
     @pass_through
   end
