@@ -37,6 +37,10 @@ class Player
     (@stats[:damage] + @basic_stats[:damage] * (@level - 1.00 / @level)).round
   end
 
+  def directions(direction)
+    DIRECTIONS[direction].dup
+  end
+
   def recieve_damage(mob)
     damage_reduction = (1.00 - 100 / (100.00 + @stats[:armour])) * 100
     @current_hp = @current_hp - (mob.damage * damage_reduction).round
