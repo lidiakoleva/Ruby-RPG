@@ -23,8 +23,8 @@ class World
                  npc_palette = @@npc_stats)
     @map = []
     @player = nil
-    @world_palette = world_palette.dup
-    @npc_palette = npc_palette.dup
+    @world_palette = world_palette || @@world
+    @npc_palette = npc_palette || @@npc_stats
 
     create_map(level, player_name)
   end
@@ -35,6 +35,14 @@ class World
 
   def []=(x, y, other)
     @map[y][x] = other
+  end
+
+  def width
+    @map[0].size
+  end
+
+  def height
+    @map.size
   end
 
   private
