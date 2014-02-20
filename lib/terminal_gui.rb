@@ -1,12 +1,45 @@
+require_relative 'world.rb'
+require 'curses'
+
 class TerminalGUI
-  @@end_coloring = "\033[0m"
 
-  def initialize(palette)
-    @palette = palette
+  @@render_palette = {"Tile" => '^^', "Water" => '~~', "Wall" => '##'}
+
+  def initialize(lvl_path,
+                 render_palette = {},
+                 world_palette = nil,
+                 npc_palette = nil)
+    @player_name = nil
+    @world = nil
+    @main_window = nil
+    @subwindow = nil
+    @quit = false
+
+    @render_palette = render_palette.merge @@render_palette
+    @lvl_path = lvl_path
+    @world_palette = world_palette
+    @npc_palette = npc_palette
   end
 
-  def color(text, color)
-    col = @palette[color.to_sym]
-    "#{col}#{text}#{@@end_coloring}"
+  def start
+    system 'reset'
+    print 'Enter your name: '
+    @player_name = gets.chomp
+    @world = World.new(@lvl_path, @player_name, @world_palette, @npc_palette)
+    render_world
+    interact
   end
+
+  private
+
+  def interact
+  end
+
+  def move_player(direction)
+  end
+
+  def render_world
+    
+  end
+
 end
