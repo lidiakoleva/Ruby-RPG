@@ -38,6 +38,11 @@ class TerminalGUI
   def move_player(direction)
   end
 
+  def stop
+    @subwindow.close unless @subwindow.nil?
+    @main_window.close unless @main_window.nil?
+  end
+
   def render_world
     
   end
