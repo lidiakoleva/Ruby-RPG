@@ -147,18 +147,13 @@ class TerminalGUI
     0.upto(@world.height.pred).each do |j|
       0.upto(@world.width.pred).each do |i|
         
-        @subwindow.setpos(j, i * 2)
-        tile = @world[i, j].class.to_s
-        fail if @render_palette[tile].nil?
-        @subwindow.attron(Curses::color_pair(@pairs[tile]))
-        @subwindow << @render_palette[tile]
-        
-        @subwindow.attroff(Curses::color_pair(@pairs[tile]))
+        tile_type = @world[i, j].class.to_s
+        render_pixel(@subwindow, i, j, tile_type)
+
       end
     end
-
-    # render_player(@subwindow, @pairs)
     render_pixel(@subwindow, @world.player.x, @world.player.y, "Player")
+
     @subwindow.refresh
     @main_window.refresh
   end
