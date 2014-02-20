@@ -3,7 +3,8 @@ require 'curses'
 
 class TerminalGUI
 
-  @@render_palette = {"Tile" => '^^', "Water" => '~~', "Wall" => '##'}
+  @@render_palette = {"Tile" => '^^', "Water" => '~~',
+                      "Wall" => '##', "Player" => '☺ '}
 
   def initialize(lvl_path,
                  render_palette = {},
@@ -33,6 +34,14 @@ class TerminalGUI
   private
 
   def interact
+  end
+
+  def render_player(window, pair)
+    window.setpos(@world.player.y, @world.player.x * 2)
+    window.attron(Curses::color_pair(pair["Player"]))
+    window << @render_palette["Player"]
+    window.attroff(Curses::color_pair(pair["Player"]))
+    window.refresh
   end
 
   def check_map_size
@@ -114,6 +123,9 @@ class TerminalGUI
         @subwindow.attroff(Curses::color_pair(pair[tile]))
       end
     end
+
+    render_player(@subwindow, pair)
+
     @subwindow.refresh
     @subwindow.getch
   end
