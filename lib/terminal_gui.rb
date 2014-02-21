@@ -27,7 +27,7 @@ class TerminalGUI
     print 'Enter your name: '
     @player_name = gets.chomp
     @world = World.new(@lvl_path, @player_name, @world_palette, @npc_palette)
-    render_world
+    initialize_world
     interact
   end
 
@@ -55,7 +55,38 @@ class TerminalGUI
   end
 
   def combat(mob)
-    #TODO
+    make_menu
+    player = @world.player
+
+    @menu.attron(Curses::color_pair(@pairs["Player Menu"]))
+    @menu << player.name
+    @menu.attroff(Curses::color_pair(@pairs["Player Menu"]))
+
+    @menu << ' has encountered '
+    @menu << ('AEIOU'.include?(mob.name[0]) ? 'an ' : 'a ')
+
+    @menu.attron(Curses::color_pair(@pairs["Mob Menu"]))
+    @menu << mob.name
+    @menu.attroff(Curses::color_pair(@pairs["Mob Menu"]))
+    @menu << "\n"
+    @menu.setpos(3, 2)
+    @menu << "What do you wish to do?\n"
+    @menu.box('#', '-')
+
+
+    ["Fight", "Flee in Terror", "Fart in it's face"].each_with_index do |el, i|
+      @menu.setpos(5 + i, 2)
+      @menu << "#{i.succ}. #{el}"
+    end
+      @menu.setpos(5, 2)
+
+
+
+    @menu.refresh(0, 0,
+                  Curses::lines * 0.6, 2,
+                  Curses::lines - 1, Curses::cols - 2)
+    @menu.getch
+    @menu.close
   end
 
   def initialize_color_pairs
@@ -65,6 +96,33 @@ class TerminalGUI
     Curses::init_pair(3, Curses::COLOR_BLUE, Curses::COLOR_BLUE)
     Curses::init_pair(4, Curses::COLOR_WHITE, Curses::COLOR_WHITE)
     Curses::init_pair(5, Curses::COLOR_BLUE, Curses::COLOR_GREEN)
+    Curses::init_pair(6, Curses::COLOR_RED, Curses::COLOR_BLACK)
+    Curses::init_pair(7, Curses::COLOR_BLUE, Curses::COLOR_BLACK)
+  end
+
+  def initialize_world
+    Curses.init_screen
+
+    check_map_size
+
+    heading_1 = "Welcome, #{@player_name} to"
+    heading_2 = "The best RPG EVER!"
+
+    initialize_color_pairs
+
+    @pairs = {"Title" => 1, "Tile" => 2, "Water" => 3,
+              "Wall" => 4, "Player" => 5, "Mob Menu" => 6, "Player Menu" => 7}
+
+    @main_window = Curses::Window.new(0, 0, 0, 0)
+    @main_window.box('#', '-')
+    @main_window.refresh
+    #---TODO: [I need to make a better introduction screen!]---#
+    add_titles(heading_1, heading_2)
+
+    @subwindow = @main_window.subwin(@world.height, (@world.width * 2), 4,
+                                     (Curses::cols - 2 - @world.width * 2) / 2)
+
+    render_map(@subwindow)
   end
 
   def inside_world?(x, y)
@@ -82,12 +140,21 @@ class TerminalGUI
 
     loop do
       key = @subwindow.getch
-      break if key.equal?(27)
+      break if [27, Curses::Key::F10].include? key
       if @directions.include? key
         move_player(@directions[key], @subwindow)
       end
+      @main_window.box('#', '-')
       @main_window.refresh
     end
+  end
+
+  def make_menu(x = Curses::cols - 4,
+                y = (Curses::lines * 0.4).round,
+                padding = 2)
+    @menu = Curses::Pad.new(y, x)
+    @menu.box('#', '-')
+    @menu.setpos(padding, padding)
   end
 
   def move_player(direction, window)
@@ -101,6 +168,8 @@ class TerminalGUI
       
       if @world[x_next, y_next].has_mob?
         combat(@world[x_next, y_next].mob)
+        @main_window.clear
+        render_map(@subwindow)
       end
 
       @world.player.move(direction)
@@ -109,47 +178,24 @@ class TerminalGUI
     end
   end
 
+  def render_map(window)
+    0.upto(@world.height.pred).each do |j|
+      0.upto(@world.width.pred).each do |i|
+        
+        tile_type = @world[i, j].class.to_s
+        render_pixel(window, i, j, tile_type)
+
+      end
+    end
+    render_pixel(window, @world.player.x, @world.player.y, "Player")
+    window.refresh
+  end
+
   def render_pixel(window, x, y, pixel_type)
     window.setpos(y, x * 2)
     window.attron(Curses::color_pair(@pairs[pixel_type]))
     window << @render_palette[pixel_type]
     window.attroff(Curses::color_pair(@pairs[pixel_type]))
-  end
-
-  def render_world
-    Curses.init_screen
-
-    check_map_size
-
-    heading_1 = "Welcome, #{@player_name} to"
-    heading_2 = "The best RPG EVER!"
-
-    initialize_color_pairs
-
-    @pairs = {"Title" => 1, "Tile" => 2,
-              "Water" => 3, "Wall" => 4, "Player" => 5}
-
-    @main_window = Curses::Window.new(0, 0, 0, 0)
-    @main_window.box('#', '-')
-    @main_window.refresh
-
-    add_titles(heading_1, heading_2)
-
-    @subwindow = @main_window.subwin(@world.height, (@world.width * 2), 4,
-                                     (Curses::cols - 2 - @world.width * 2) / 2)
-
-    0.upto(@world.height.pred).each do |j|
-      0.upto(@world.width.pred).each do |i|
-        
-        tile_type = @world[i, j].class.to_s
-        render_pixel(@subwindow, i, j, tile_type)
-
-      end
-    end
-    render_pixel(@subwindow, @world.player.x, @world.player.y, "Player")
-
-    @subwindow.refresh
-    @main_window.refresh
   end
 
   def stop
