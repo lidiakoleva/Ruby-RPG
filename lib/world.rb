@@ -5,6 +5,9 @@ require_relative 'player.rb'
 
 class World
 
+  class NoPlayerError < RuntimeError
+  end
+
   @@world = {Colours::GREEN => Tile,
              Colours::GREY => Wall,
              Colours::BLUE => Water,
@@ -81,6 +84,8 @@ class World
         end
       end
     end
+
+    raise NoPlayerError if @player.nil?
   end
 
 end
