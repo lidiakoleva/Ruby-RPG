@@ -30,10 +30,9 @@ class TerminalGUI
     initialize_world
 
     options = ["New Game", "Load Game", "Exit"]
-    player_choice = render_main_menu(@main_window, '[Ruby RPG]', options)
 
 
-    case player_choice
+    case render_main_menu(@main_window, '[Ruby RPG]', options)
 
     when "New Game", "Load Game"
       x_offset = (Curses::cols - 2 - @world.width * 2) / 2
@@ -41,6 +40,7 @@ class TerminalGUI
                                        4, x_offset)
       render_map(@subwindow)
       interact
+      stop
     when "Exit"
       stop
     end
@@ -148,12 +148,34 @@ class TerminalGUI
     @directions = {keys::UP => :up, keys::DOWN => :down,
                    keys::LEFT => :left, keys::RIGHT => :right}
 
-    loop do
+    while @run
       key = @subwindow.getch
-      break if [27, Curses::Key::F10].include? key
-      if @directions.include? key
+
+      case key
+
+      when keys::F10
+
+        options = ["Resume", "Save", "Exit"]
+
+        case render_main_menu(@main_window, "Menu", options)
+
+        when "Resume"
+          render_map(@subwindow)
+        when "Save"
+          #TODO
+        when "Exit"
+          @run = false
+        end
+
+      when 27
+
+        @run = false
+
+      when keys::UP, keys::DOWN, keys::LEFT, keys::RIGHT
+
         move_player(@directions[key], @subwindow)
       end
+      
       @main_window.box('#', '-')
       @main_window.refresh
     end
