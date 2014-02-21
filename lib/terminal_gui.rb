@@ -28,6 +28,24 @@ class TerminalGUI
     @player_name = gets.chomp
     @world = World.new(@lvl_path, @player_name, @world_palette, @npc_palette)
     initialize_world
+
+    options = ["New Game", "Load Game", "Exit"]
+    player_choice = render_main_menu(@main_window, '[Ruby RPG]', options)
+
+
+    case player_choice
+
+    when "New Game", "Load Game"
+      x_offset = (Curses::cols - 2 - @world.width * 2) / 2
+      @subwindow = @main_window.subwin(@world.height, (@world.width * 2),
+                                       4, x_offset)
+      render_map(@subwindow)
+      interact
+    when "Exit"
+      stop
+    end
+
+
   end
 
   private #---serious business starts here---#
@@ -113,23 +131,8 @@ class TerminalGUI
               "Wall" => 4, "Player" => 5, "Mob Menu" => 6, "Player Menu" => 7}
 
     make_main_window
-    #---TODO: [I need to make a better introduction screen!]---#
+
     add_titles(heading_1, heading_2)
-
-    options = ["New Game", "Load Game", "Exit"]
-    player_choice = render_main_menu(@main_window, options)
-
-    x_offset = (Curses::cols - 2 - @world.width * 2) / 2
-
-    case player_choice
-    when "New Game", "Load Game"
-      @subwindow = @main_window.subwin(@world.height, (@world.width * 2),
-                                       4, x_offset)
-      render_map(@subwindow)
-      interact
-    when "Exit"
-      stop
-    end
   end
 
   def inside_world?(x, y)
@@ -191,8 +194,7 @@ class TerminalGUI
     end
   end
 
-  def render_main_menu(window, options)
-    title = 'Ruby RPG'
+  def render_main_menu(window, title, options)
     longest_word = options.group_by(&:size).max.last[0].size
     
     window.clear
@@ -211,15 +213,21 @@ class TerminalGUI
     end
 
     menu.box('#', '-')
+    Curses.noecho
 
-    menu.setpos(0, x_center)
+    menu.setpos(0, (menu.maxx - title.size) / 2)
     menu << title
 
     menu.setpos(3 + options.size, 3)
     menu << "Enter your choice: "
     choice = menu.getch
-    menu.close
 
+    while options[choice.to_i.pred].nil? or choice.to_i < 1
+      choice = menu.getch
+    end
+
+    menu.close
+    Curses.echo
     options[choice.to_i.pred]
   end
 
