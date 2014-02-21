@@ -28,7 +28,6 @@ class TerminalGUI
     @player_name = gets.chomp
     @world = World.new(@lvl_path, @player_name, @world_palette, @npc_palette)
     initialize_world
-    interact
   end
 
   private #---serious business starts here---#
@@ -55,7 +54,7 @@ class TerminalGUI
   end
 
   def combat(mob)
-    make_menu
+    make_combat_menu
     player = @world.player
 
     @menu.attron(Curses::color_pair(@pairs["Player Menu"]))
@@ -113,16 +112,24 @@ class TerminalGUI
     @pairs = {"Title" => 1, "Tile" => 2, "Water" => 3,
               "Wall" => 4, "Player" => 5, "Mob Menu" => 6, "Player Menu" => 7}
 
-    @main_window = Curses::Window.new(0, 0, 0, 0)
-    @main_window.box('#', '-')
-    @main_window.refresh
+    make_main_window
     #---TODO: [I need to make a better introduction screen!]---#
     add_titles(heading_1, heading_2)
 
-    @subwindow = @main_window.subwin(@world.height, (@world.width * 2), 4,
-                                     (Curses::cols - 2 - @world.width * 2) / 2)
+    options = ["New Game", "Load Game", "Exit"]
+    player_choice = render_main_menu(@main_window, options)
 
-    render_map(@subwindow)
+    x_offset = (Curses::cols - 2 - @world.width * 2) / 2
+
+    case player_choice
+    when "New Game", "Load Game"
+      @subwindow = @main_window.subwin(@world.height, (@world.width * 2),
+                                       4, x_offset)
+      render_map(@subwindow)
+      interact
+    when "Exit"
+      stop
+    end
   end
 
   def inside_world?(x, y)
@@ -149,12 +156,18 @@ class TerminalGUI
     end
   end
 
-  def make_menu(x = Curses::cols - 4,
+  def make_combat_menu(x = Curses::cols - 4,
                 y = (Curses::lines * 0.4).round,
                 padding = 2)
     @menu = Curses::Pad.new(y, x)
     @menu.box('#', '-')
     @menu.setpos(padding, padding)
+  end
+
+  def make_main_window
+    @main_window = Curses::Window.new(0, 0, 0, 0)
+    @main_window.box('#', '-')
+    @main_window.refresh
   end
 
   def move_player(direction, window)
@@ -176,6 +189,38 @@ class TerminalGUI
       render_pixel(window, x, y, "Tile")
       render_pixel(window, x_next, y_next, "Player")
     end
+  end
+
+  def render_main_menu(window, options)
+    title = 'Ruby RPG'
+    longest_word = options.group_by(&:size).max.last[0].size
+    
+    window.clear
+    window.box('#', '-')
+    
+    width = (longest_word + 9 < 26 ? 26 : longest_word + 9)
+    height = options.size + 5
+    x_center = (window.maxx - width - 2) / 2
+    y_center = (window.maxy - height - 2) / 2
+
+    menu = window.subwin(height, width, y_center, x_center)
+
+    options.each_with_index do |elem, index|
+      menu.setpos(2 + index, 3)
+      menu << "#{index.succ}. #{elem}"
+    end
+
+    menu.box('#', '-')
+
+    menu.setpos(0, x_center)
+    menu << title
+
+    menu.setpos(3 + options.size, 3)
+    menu << "Enter your choice: "
+    choice = menu.getch
+    menu.close
+
+    options[choice.to_i.pred]
   end
 
   def render_map(window)
