@@ -31,7 +31,42 @@ class TerminalGUI
     interact
   end
 
-  private
+  private #---serious business starts here---#
+
+  def add_titles(heading_1, heading_2)
+    @main_window.attron(Curses::color_pair(@pairs["Title"]))
+
+    @main_window.setpos(2, (Curses::cols.pred - heading_1.size - 2) / 2)
+    @main_window << heading_1
+
+    @main_window.setpos(3, (Curses::cols.pred - heading_2.size - 2) / 2)
+    @main_window << heading_2
+
+    @main_window.attroff(Curses::color_pair(@pairs["Title"]))
+    @main_window.refresh
+  end
+
+  def check_map_size
+    if Curses::lines < @world.height + 3
+      print "Map too large to be loaded!\n"
+      print "Lines: #{Curses::lines}\nWorld: #{world.height}\n"
+      stop
+    end
+  end
+
+  def initialize_color_pairs
+    Curses::start_color
+    Curses::init_pair(1, Curses::COLOR_GREEN, Curses::COLOR_BLACK)
+    Curses::init_pair(2, Curses::COLOR_GREEN, Curses::COLOR_GREEN)
+    Curses::init_pair(3, Curses::COLOR_BLUE, Curses::COLOR_BLUE)
+    Curses::init_pair(4, Curses::COLOR_WHITE, Curses::COLOR_WHITE)
+    Curses::init_pair(5, Curses::COLOR_BLUE, Curses::COLOR_GREEN)
+  end
+
+  def inside_world?(x, y)
+    0.upto(@world.width.pred).include? x and
+    0.upto(@world.height.pred).include? y
+  end
 
   def interact
     Curses.noecho
@@ -51,17 +86,23 @@ class TerminalGUI
     end
   end
 
-  def inside_world?(x, y)
-    0.upto(@world.width.pred).include? x and
-    0.upto(@world.height.pred).include? y
-  end
+  def move_player(direction, window)
+    x, y = @world.player.x, @world.player.y
 
-  def render_player(window, pair)
-    window.setpos(@world.player.y, @world.player.x * 2)
-    window.attron(Curses::color_pair(pair["Player"]))
-    window << @render_palette["Player"]
-    window.attroff(Curses::color_pair(pair["Player"]))
-    window.refresh
+    dir_vector = @world.player.directions(direction)
+    x_next, y_next = x + dir_vector[0], y + dir_vector[1]
+
+    if inside_world?(x_next, y_next) and
+      @world[x_next, y_next].instance_of? Tile
+      
+      if @world[x_next, y_next].has_mob?
+        combat(@world[x_next, y_next].mob)
+      end
+
+      @world.player.move(direction)
+      render_pixel(window, x, y, "Tile")
+      render_pixel(window, x_next, y_next, "Player")
+    end
   end
 
   def render_pixel(window, x, y, pixel_type)
@@ -71,55 +112,12 @@ class TerminalGUI
     window.attroff(Curses::color_pair(@pairs[pixel_type]))
   end
 
-  def check_map_size
-    if Curses::lines < @world.height + 3
-      print "Map too large to be loaded!\n"
-      print "Lines: #{Curses::lines}\nWorld: #{world.height}\n"
-      stop
-    end
-  end
-
-  def move_player(direction, window)
-    x, y = @world.player.x, @world.player.y
-
-    dir_vector = @world.player.directions(direction)
-    x_next, y_next = x + dir_vector[0], y + dir_vector[1]
-
-    if inside_world?(x_next, y_next) and
-      @world[x_next, y_next].instance_of? Tile
-      @world.player.move(direction)
-
-      render_pixel(window, x, y, "Tile")
-      render_pixel(window, x_next, y_next, "Player")
-    end
-  end
-
-  def initialize_color_pairs
-    Curses::start_color
-    Curses::init_pair(1, Curses::COLOR_GREEN, Curses::COLOR_BLACK)
-    Curses::init_pair(2, Curses::COLOR_GREEN, Curses::COLOR_GREEN)
-    Curses::init_pair(3, Curses::COLOR_BLUE, Curses::COLOR_BLUE)
-    Curses::init_pair(4, Curses::COLOR_WHITE, Curses::COLOR_WHITE)
-    Curses::init_pair(5, Curses::COLOR_BLUE, Curses::COLOR_GREEN)
-  end
-
-  def add_titles(heading_1, heading_2)
-    @main_window.attron(Curses::color_pair(@pairs["Title"]))
-
-    @main_window.setpos(2, (Curses::cols.pred - heading_1.size - 2) / 2)
-    @main_window << heading_1
-
-    @main_window.setpos(3, (Curses::cols.pred - heading_2.size - 2) / 2)
-    @main_window << heading_2
-
-    @main_window.attroff(Curses::color_pair(@pairs["Title"]))
-    @main_window.refresh
-  end
-
-  def stop
-    @subwindow.close unless @subwindow.nil?
-    @main_window.close unless @main_window.nil?
-    Curses::close_screen
+  def render_player(window, pair)
+    window.setpos(@world.player.y, @world.player.x * 2)
+    window.attron(Curses::color_pair(pair["Player"]))
+    window << @render_palette["Player"]
+    window.attroff(Curses::color_pair(pair["Player"]))
+    window.refresh
   end
 
   def render_world
@@ -156,6 +154,12 @@ class TerminalGUI
 
     @subwindow.refresh
     @main_window.refresh
+  end
+
+  def stop
+    @subwindow.close unless @subwindow.nil?
+    @main_window.close unless @main_window.nil?
+    Curses::close_screen
   end
 
 end
