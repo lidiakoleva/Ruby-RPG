@@ -1,6 +1,6 @@
 8-bit RPG
 ==========
-Hello everyone! This my university project for the course 'Programing with Ruby' In the following days the game will be under heavy development so stay tuned.
+Hello everyone! This my university project for the course 'Programming with Ruby' In the following days the game will be under heavy development so stay tuned.
 
 How to run the game under Linux
 ----------
@@ -13,7 +13,7 @@ How to run the game under Linux
 
 ### After you've installed ruby you will need to install ``libncursesw5-dev`` ###
 
-> **Ubuntu:** ``sudo apt-get intsall libncursesw5-dev`` *(This will allow ``curses`` to run with unicode characters)*
+> **Ubuntu:** ``sudo apt-get install libncursesw5-dev`` *(This will allow ``curses`` to run with unicode characters)*
 
 ### Now install the ``curses`` gem ###
 
