@@ -2,7 +2,7 @@ require_relative '../lib/world.rb'
 require_relative '../lib/tile.rb'
 
 describe World do
-  let(:path) {String.new("/home/latunov/Desktop/ruby_proj/data/levels/1.bmp")}
+  let(:path) {String.new("data/levels/1.bmp")}
   let (:world) {World.new(path, "Random Hero")}
 
   it "can be initialized" do
