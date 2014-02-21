@@ -16,7 +16,7 @@ How to run the game under Linux
 
 * Clone this repository somewhere on your computer, open a terminal and move to the destination folder
 
-> ``cd /path/to/where/you/cloned/the/repository/Ruby-RPG/
+> ``cd /path/to/where/you/cloned/the/repository/Ruby-RPG/``
 
 * Now run the ``ui.rb``
 
