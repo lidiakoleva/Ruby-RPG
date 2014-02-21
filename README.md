@@ -22,4 +22,4 @@ How to run the game under Linux
 
 > ``ruby ui.rb``
 
-* ##Enjoy the game :)##
+* **Enjoy the game :)**
