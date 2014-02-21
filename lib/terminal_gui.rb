@@ -54,6 +54,10 @@ class TerminalGUI
     end
   end
 
+  def combat(mob)
+    #TODO
+  end
+
   def initialize_color_pairs
     Curses::start_color
     Curses::init_pair(1, Curses::COLOR_GREEN, Curses::COLOR_BLACK)
@@ -110,14 +114,6 @@ class TerminalGUI
     window.attron(Curses::color_pair(@pairs[pixel_type]))
     window << @render_palette[pixel_type]
     window.attroff(Curses::color_pair(@pairs[pixel_type]))
-  end
-
-  def render_player(window, pair)
-    window.setpos(@world.player.y, @world.player.x * 2)
-    window.attron(Curses::color_pair(pair["Player"]))
-    window << @render_palette["Player"]
-    window.attroff(Curses::color_pair(pair["Player"]))
-    window.refresh
   end
 
   def render_world
