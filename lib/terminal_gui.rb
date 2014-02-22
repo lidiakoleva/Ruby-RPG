@@ -1,5 +1,6 @@
 require_relative 'world.rb'
 require 'curses'
+require 'yaml/store'
 
 class TerminalGUI
 
@@ -29,22 +30,28 @@ class TerminalGUI
     @world = World.new(@lvl_path, @player_name, @world_palette, @npc_palette)
     initialize_world
 
-    options = ["New Game", "Load Game", "Exit"]
+    x_offset = (Curses::cols - 2 - @world.width * 2) / 2
+    @subwindow = @main_window.subwin(@world.height, (@world.width * 2),
+                                       4, x_offset)
 
+
+    options = ["New Game", "Load Game", "Exit"]
 
     case render_main_menu(@main_window, '[Ruby RPG]', options)
 
-    when "New Game", "Load Game"
-      x_offset = (Curses::cols - 2 - @world.width * 2) / 2
-      @subwindow = @main_window.subwin(@world.height, (@world.width * 2),
-                                       4, x_offset)
+    when "New Game"
       render_map(@subwindow)
-      interact
-      stop
+
+    when "Load Game"
+      load_game
+      @run = false if @world.nil?
+      render_map(@subwindow)
     when "Exit"
-      stop
+      @run = false
     end
 
+    interact
+    stop
 
   end
 
@@ -162,7 +169,8 @@ class TerminalGUI
         when "Resume"
           render_map(@subwindow)
         when "Save"
-          #TODO
+          save_game
+          render_map(@subwindow)
         when "Exit"
           @run = false
         end
@@ -178,6 +186,20 @@ class TerminalGUI
       
       @main_window.box('#', '-')
       @main_window.refresh
+    end
+  end
+
+  def load_game
+    saved_game = YAML::Store.new("data/saves/#{@player_name}.store")
+    saved_game.transaction do
+      @world = saved_game[@player_name]
+    end
+  end
+
+  def save_game
+    save_file = YAML::Store.new("data/saves/#{@player_name}.store")
+    save_file.transaction do
+      save_file[@player_name] = @world
     end
   end
 
