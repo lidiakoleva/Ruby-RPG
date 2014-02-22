@@ -37,15 +37,18 @@ class TerminalGUI
 
     options = ["New Game", "Load Game", "Exit"]
 
-    case render_main_menu(@main_window, '[Ruby RPG]', options)
+    case render_menu(@main_window, '[Ruby RPG]', options)
 
     when "New Game"
       render_map(@subwindow)
 
     when "Load Game"
       load_game
-      @run = false if @world.nil?
-      render_map(@subwindow)
+      if @world.nil?
+        @run = false
+      else
+        render_map(@subwindow)
+      end
     when "Exit"
       @run = false
     end
@@ -70,6 +73,12 @@ class TerminalGUI
     @main_window.refresh
   end
 
+  def add_text(window, text, colouring)
+    window.attron(Curses::color_pair(@pairs[colouring]))
+    window << text
+    window.attroff(Curses::color_pair(@pairs[colouring]))
+  end
+
   def check_map_size
     if Curses::lines < @world.height + 3
       print "Map too large to be loaded!\n"
@@ -79,38 +88,52 @@ class TerminalGUI
   end
 
   def combat(mob)
-    make_combat_menu
+    top_left_y = (@main_window.maxy * 0.6).round
+    combat_menu = Curses::Pad.new(@main_window.maxy - top_left_y,
+                                  @main_window.maxx.pred.pred)
+
     player = @world.player
+    question = "What do you wish to do?: "
+    combat_options = ["Fight", "Flee in Terror", "Fart in it's face"]
 
-    @menu.attron(Curses::color_pair(@pairs["Player Menu"]))
-    @menu << player.name
-    @menu.attroff(Curses::color_pair(@pairs["Player Menu"]))
+    combat_menu.setpos(1, 2)
+    add_text(combat_menu, player.name, "Player Menu")
 
-    @menu << ' has encountered '
-    @menu << ('AEIOU'.include?(mob.name[0]) ? 'an ' : 'a ')
+    combat_menu << ' has encountered '
+    combat_menu << ('AEIOU'.include?(mob.name[0]) ? 'an ' : 'a ')
 
-    @menu.attron(Curses::color_pair(@pairs["Mob Menu"]))
-    @menu << mob.name
-    @menu.attroff(Curses::color_pair(@pairs["Mob Menu"]))
-    @menu << "\n"
-    @menu.setpos(3, 2)
-    @menu << "What do you wish to do?\n"
-    @menu.box('#', '-')
+    add_text(combat_menu, mob.name, "Mob Menu")
+
+    combat_menu << "\n"
+    combat_menu.setpos(3, 2)
+    combat_menu << question
+    combat_menu.box('#', '-')
 
 
-    ["Fight", "Flee in Terror", "Fart in it's face"].each_with_index do |el, i|
-      @menu.setpos(5 + i, 2)
-      @menu << "#{i.succ}. #{el}"
+    combat_options.each_with_index do |el, i|
+      combat_menu.setpos(5 + i, 2)
+      combat_menu << "#{i.succ}. #{el}"
     end
-      @menu.setpos(5, 2)
+    
 
+    combat_menu.setpos(3, question.size + 2)
 
-
-    @menu.refresh(0, 0,
+    combat_menu.refresh(0, 0,
                   Curses::lines * 0.6, 2,
                   Curses::lines - 1, Curses::cols - 2)
-    @menu.getch
-    @menu.close
+    choice = combat_menu.getch
+
+    case combat_menu[choice.pred]
+
+    when "Fight"
+      fight(mob, player)
+    when "Flee in Terror"
+      #idk
+    when "Fart in it's face"
+      mob.recieve_damage(player)
+    end
+
+    combat_menu.close
   end
 
   def initialize_color_pairs
@@ -164,7 +187,7 @@ class TerminalGUI
 
         options = ["Resume", "Save", "Exit"]
 
-        case render_main_menu(@main_window, "Menu", options)
+        case render_menu(@main_window, "Menu", options)
 
         when "Resume"
           render_map(@subwindow)
@@ -196,21 +219,6 @@ class TerminalGUI
     end
   end
 
-  def save_game
-    save_file = YAML::Store.new("data/saves/#{@player_name}.store")
-    save_file.transaction do
-      save_file[@player_name] = @world
-    end
-  end
-
-  def make_combat_menu(x = Curses::cols - 4,
-                y = (Curses::lines * 0.4).round,
-                padding = 2)
-    @menu = Curses::Pad.new(y, x)
-    @menu.box('#', '-')
-    @menu.setpos(padding, padding)
-  end
-
   def make_main_window
     @main_window = Curses::Window.new(0, 0, 0, 0)
     @main_window.box('#', '-')
@@ -238,7 +246,7 @@ class TerminalGUI
     end
   end
 
-  def render_main_menu(window, title, options)
+  def render_menu(window, title, options)
     longest_word = options.group_by(&:size).max.last[0].size
     
     window.clear
@@ -293,6 +301,13 @@ class TerminalGUI
     window.attron(Curses::color_pair(@pairs[pixel_type]))
     window << @render_palette[pixel_type]
     window.attroff(Curses::color_pair(@pairs[pixel_type]))
+  end
+
+  def save_game
+    save_file = YAML::Store.new("data/saves/#{@player_name}.store")
+    save_file.transaction do
+      save_file[@player_name] = @world
+    end
   end
 
   def stop
