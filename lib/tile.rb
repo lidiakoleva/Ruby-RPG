@@ -1,9 +1,8 @@
 class Tile
   attr_reader :mob
-  def initialize(pass_through = true, mob = nil, chest = nil)
+  def initialize(pass_through = true, mob = nil)
     @pass_through = pass_through
     @mob = mob
-    @chest = chest
   end
 
   def has_mob?

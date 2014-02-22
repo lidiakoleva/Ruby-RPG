@@ -1,0 +1,1627 @@
+---
+swords: !ruby/object:World
+  map:
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: !ruby/object:NPC
+        name: Merfolk
+        stats: &1 {}
+        xp: 260
+        current_hp: 
+        item: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Water
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  - - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Wall
+      pass_through: false
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+    - !ruby/object:Tile
+      pass_through: true
+      mob: 
+      chest: 
+  player: !ruby/object:Player
+    name: swords
+    xp: 0
+    level: 1
+    basic_stats:
+      :hp: 80
+      :armour: 0
+      :damage: 12
+      :mana: 40
+      :crit: 0.0
+    max_hp: 80
+    max_mana: 40
+    stats:
+      :hp: 80
+      :armour: 0
+      :damage: 12
+      :mana: 40
+      :crit: 0.0
+    current_hp: 80
+    current_mana: 40
+    stats_from_consumables:
+      :current_hp: 80
+      :current_mana: 40
+    inventory: []
+    equipped_items:
+      :left_hand: 
+      :right_hand: 
+      :head: 
+      :torso: 
+      :legs: 
+      :feet: 
+    load: 0
+    direction: :down
+    x: 11
+    y: 16
+  world_palette:
+    00c864: !ruby/class 'Tile'
+    '919191': !ruby/class 'Wall'
+    9b7805: !ruby/class 'Water'
+    '000000': !ruby/class 'NPC'
+    ffffff: !ruby/class 'Player'
+  npc_palette:
+    :name:
+    - Rat
+    - Goo Blob
+    - Skeleton
+    - Merfolk
+    - Elf
+    :stats:
+    - *1
+    :xp:
+    - 240
+    - 250
+    - 260
+    - 270
