@@ -175,7 +175,7 @@ class Player
   NO_ITEMS_EQUIPPED = {:left_hand => nil, :right_hand => nil, :head => nil, 
                        :torso     => nil, :legs       => nil, :feet => nil}
 
-  BASIC_STATS = {:hp => 80, :armour => 0, :damage => 12,
+  BASIC_STATS = {:hp => 80, :armour => 3, :damage => 12,
                  :mana => 40, :crit => 0.00}.freeze
 
   MERGE = Proc.new { |_, value_1, value_2| value_1 + value_2 }

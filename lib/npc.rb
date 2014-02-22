@@ -1,8 +1,8 @@
 class NPC
 
-  BASIC_STATS = {:damage => 15, :armour => 5, :hp => 60}
+  BASIC_STATS = {:damage => 13, :armour => 5, :hp => 60}
 
-  attr_reader :name, :stats, :xp
+  attr_reader :name, :stats, :xp, :current_hp
   def initialize(name, stats = BASIC_STATS, xp = 100, item = nil)
     @name = name
     @stats = stats

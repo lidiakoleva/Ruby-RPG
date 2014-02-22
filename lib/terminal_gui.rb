@@ -132,6 +132,8 @@ class TerminalGUI
         stop
       else
         player.end_combat
+        player.gain(mob.loot[:xp])
+        player.pick_up(mob.loot[:item]) unless mob.loot[:item].nil?
         @world.kill_mob(mob)
       end
     when "Flee in Terror"
@@ -144,16 +146,22 @@ class TerminalGUI
   end
 
   def fight(mob, player, window)
+    center = window.maxx / 2
+    window.setpos(1, center)
+    window << "#{mob.name}: #{mob.current_hp} / #{mob.stats[:hp]}"
 
-    window.setpos(2, window.maxx / 2)
+    window.setpos(2, center)
     window << "You deal "
     add_text(window, mob.recieve_damage(player).to_s, "Title")
     window << " damage to #{mob.name}"
 
-    window.setpos(3, window.maxx / 2)
+    window.setpos(3, center)
     window << "#{mob.name} deals "
     add_text(window, player.recieve_damage(mob).to_s, "Mob Menu")
     window << " to you"
+    window.setpos(4, center)
+    window << "You have slain #{mob.name}" if mob.dead?
+    add_text(window, "You have been slain.", "Mob Menu") if player.dead?
     window.refresh
     window.getch
 
