@@ -27,4 +27,14 @@ describe World do
     world.map.any? {|x| x.any? {|tile| tile.should respond_to :mob}}
   end
 
+  it "cannot be initiated without a player" do
+    mobs_only_map = "data/levels/no_player.bmp"
+    expect {World.new(mobs_only_map, "")}.to raise_error World::NoPlayerError
+  end
+
+  it "raises an error if it cannot load the map" do
+    fake_map = "data/levels/omgwtfbbq.bmp"
+    expect {World.new(fake_map, "")}.to raise_error World::UnableToReadImage
+  end
+
 end

@@ -8,6 +8,9 @@ class World
   class NoPlayerError < RuntimeError
   end
 
+  class UnableToReadImage < RuntimeError
+  end
+
   @@world = {Colours::GREEN => Tile,
              Colours::GREY => Wall,
              Colours::BLUE => Water,
@@ -60,7 +63,7 @@ class World
     begin
       bitmap = BMPReader.new(level)
     rescue
-      puts "BMP Reader unable to read #{level}"
+      raise UnableToReadImage, "BMP Reader unable to read #{level}"
     end
 
 
