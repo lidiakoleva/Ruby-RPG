@@ -89,8 +89,11 @@ class TerminalGUI
 
   def combat(mob)
     top_left_y = (@main_window.maxy * 0.6).round
-    combat_menu = Curses::Pad.new(@main_window.maxy - top_left_y,
-                                  @main_window.maxx.pred.pred)
+    combat_menu = @main_window.subwin(@main_window.maxy - top_left_y,
+                                  @main_window.maxx.pred.pred,
+                                  top_left_y, 1)
+    combat_menu.clear
+    combat_menu.refresh
 
     player = @world.player
     question = "What do you wish to do?: "
@@ -118,15 +121,19 @@ class TerminalGUI
 
     combat_menu.setpos(3, question.size + 2)
 
-    combat_menu.refresh(0, 0,
-                  Curses::lines * 0.6, 2,
-                  Curses::lines - 1, Curses::cols - 2)
+    combat_menu.refresh
     choice = combat_menu.getch
 
-    case combat_menu[choice.pred]
+    case combat_options[choice.to_i.pred]
 
     when "Fight"
-      fight(mob, player)
+      fight(mob, player, combat_menu) unless player.dead? or mob.dead?
+      if player.dead?
+        stop
+      else
+        player.end_combat
+        @world.kill_mob(mob)
+      end
     when "Flee in Terror"
       #idk
     when "Fart in it's face"
@@ -134,6 +141,22 @@ class TerminalGUI
     end
 
     combat_menu.close
+  end
+
+  def fight(mob, player, window)
+
+    window.setpos(2, window.maxx / 2)
+    window << "You deal "
+    add_text(window, mob.recieve_damage(player).to_s, "Title")
+    window << " damage to #{mob.name}"
+
+    window.setpos(3, window.maxx / 2)
+    window << "#{mob.name} deals "
+    add_text(window, player.recieve_damage(mob).to_s, "Mob Menu")
+    window << " to you"
+    window.refresh
+    window.getch
+
   end
 
   def initialize_color_pairs
@@ -157,8 +180,8 @@ class TerminalGUI
 
     initialize_color_pairs
 
-    @pairs = {"Title" => 1, "Tile" => 2, "Water" => 3,
-              "Wall" => 4, "Player" => 5, "Mob Menu" => 6, "Player Menu" => 7}
+    @pairs = {"Title" => 1, "Tile" => 2, "Water" => 3, "Wall" => 4,
+              "Player" => 5, "Mob Menu" => 6, "Player Menu" => 7}
 
     make_main_window
 

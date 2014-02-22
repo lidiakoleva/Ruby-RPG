@@ -10,6 +10,10 @@ class Tile
     @mob != nil
   end
 
+  def kill_mob
+    @mob = nil
+  end
+
   def pass_through?
     @pass_through
   end

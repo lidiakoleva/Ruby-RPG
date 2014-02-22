@@ -44,6 +44,7 @@ class Player
   def recieve_damage(mob)
     damage_reduction = (1.00 - 100 / (100.00 + @stats[:armour])) * 100
     @current_hp = @current_hp - (mob.damage * damage_reduction).round
+    (mob.damage * damage_reduction).round
   end
 
   def end_combat

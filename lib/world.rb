@@ -18,7 +18,7 @@ class World
              Colours::WHITE => Player}.freeze
 
   @@npc_stats = {:name => ['Rat', 'Goo Blob', 'Skeleton', 'Merfolk', 'Elf'],
-                 :stats => [{}],
+                 :stats => [NPC::BASIC_STATS],
                  :xp => [240, 250, 260, 270]}.freeze
 
   attr_reader :map, :player
@@ -49,6 +49,14 @@ class World
 
   def height
     @map.size
+  end
+
+  def kill_mob(mob)
+    0.upto(width.pred) do |i|
+      0.upto(height.pred) do |j|
+        @map[j][i].kill_mob if @map[j][i].mob == mob
+      end
+    end
   end
 
   private
