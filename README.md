@@ -7,9 +7,7 @@ How to run the game under Linux
 
 ### You need to have [Ruby](https://www.ruby-lang.org/) installed (2.1.0 is recomended) ###
 
-> * ``sudo apt-get install curl`` *(Ubuntu)*
-> * ``\curl -sSL https://get.rvm.io | bash -s stable --ruby``
-> * ``rvm install 2.1.0``
+> **I recommend installing it with [RVM](https://rvm.io/)**
 
 ### After you've installed ruby you will need to install ``libncursesw5-dev`` ###
 
